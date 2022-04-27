@@ -8,7 +8,7 @@
 		<div class="col-md-9">
 			<small class="post-date">发布于: <?php echo $post['created_at']; ?> 通过 <strong><?php echo $post['name']; ?></strong></small>
 		<?php echo word_limiter($post['body'], 60); ?>
-		<p><a class="btn btn-default" href="<?php echo site_url('/posts/'.$post['slug']); ?>">阅读全文</a></p>
+		<p><a class="btn btn-default" href="<?php $slug =urlencode($post['slug']);echo site_url('/posts/'.$slug); ?>">阅读全文</a></p>
 		</div>
 	</div>
 <?php endforeach; ?>
