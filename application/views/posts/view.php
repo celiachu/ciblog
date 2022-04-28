@@ -5,7 +5,7 @@
 	<?php echo $post['body']; ?>
 </div>
 
-<?php if($this->session->userdata('user_id') == $post['user_id']): ?>
+<?php if($this->session->userdata('user')['id'] == $post['user_id']): ?>
 	<hr>
 	<a class="btn btn-default pull-left" href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug']; ?>">Edit</a>
 	<?php echo form_open('/posts/delete/'.$post['id']); ?>
@@ -26,11 +26,11 @@
 <hr>
 <h3>添加评论</h3>
 <?php echo validation_errors(); ?>
-<?php if(!$this->session->userdata('logged_in')) : ?>
+<?php if(!$this->session->userdata('user')) : ?>
     <li><a href="<?php echo base_url(); ?>users/login">登录</a></li>
     <li><a href="<?php echo base_url(); ?>users/register">注册</a></li>
 <?php endif; ?>
-<?php if($this->session->userdata('logged_in')) : ?>
+<?php if($this->session->userdata('user')) : ?>
     <?php echo form_open('comments/create/'.$post['id']); ?>
 	    <div class="form-group">
 		    <label>内容</label>

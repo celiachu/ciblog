@@ -38,11 +38,6 @@
 		}
 
 		public function create(){
-			// 检查登录
-			if(!$this->session->userdata('logged_in')){
-				redirect('users/login');
-			}
-
 			$data['title'] = 'Create Post';
 
 			$data['categories'] = $this->post_model->get_categories();
@@ -82,11 +77,6 @@
 		}
 
 		public function delete($id){
-			// 检查登录
-			if(!$this->session->userdata('logged_in')){
-				redirect('users/login');
-			}
-
 			$this->post_model->delete_post($id);
 
 			// 设置消息
@@ -96,17 +86,13 @@
 		}
 
 		public function edit($slug){
-			// 检查登录
-			if(!$this->session->userdata('logged_in')){
-				redirect('users/login');
-			}
-
+            $slug = urldecode($slug);
 			$data['post'] = $this->post_model->get_posts($slug);
 
 			// 检查登录
-			if($this->session->userdata('user_id') != $this->post_model->get_posts($slug)['user_id']){
+			$user = $this->session->userdata('user');
+			if($user["id"] != $this->post_model->get_posts($slug)['user_id']){
 				redirect('posts');
-
 			}
 
 			$data['categories'] = $this->post_model->get_categories();
@@ -123,10 +109,7 @@
 		}
 
 		public function update(){
-			// 检查登录
-			if(!$this->session->userdata('logged_in')){
-				redirect('users/login');
-			}
+			// TODO 鉴权
 
 			$this->post_model->update_post();
 

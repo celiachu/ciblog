@@ -46,11 +46,14 @@
 
 				if($user_id){
 					// 创建session
+					$role = 'guest';
 					$user_data = array(
-						'user_id' => $user_id,
-						'username' => $username,
-						'logged_in' => true,
-						'user_email' => $this->user_model->get_user_email($user_id),
+                        "user" =>array(
+						'id' => $user_id,
+						'name' => $username,
+						'email' => $this->user_model->get_user_email($user_id),
+						"role"=> $role,
+						)
 					);
 
 					$this->session->set_userdata($user_data);
@@ -71,10 +74,8 @@
 		// 登出
 		public function logout(){
 			// 数据清一下
-			$this->session->unset_userdata('logged_in');
-			$this->session->unset_userdata('user_id');
-			$this->session->unset_userdata('username');
-			$this->session->unset_userdata('user_email');
+			$this->session->unset_userdata('user');
+
 
 			// 设置消息
 			$this->session->set_flashdata('user_loggedout', '登出成功');

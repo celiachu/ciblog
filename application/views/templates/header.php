@@ -19,11 +19,11 @@
              <li><a href="<?php echo base_url(); ?>categories">分类</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          <?php if(!$this->session->userdata('logged_in')) : ?>
+          <?php if(!$this->session->userdata('user')) : ?>
             <li><a href="<?php echo base_url(); ?>users/login">登录</a></li>
             <li><a href="<?php echo base_url(); ?>users/register">注册</a></li>
           <?php endif; ?>
-          <?php if($this->session->userdata('logged_in')) : ?>
+          <?php if($this->session->userdata('user')) : ?>
             <li><a href="<?php echo base_url(); ?>posts/create">新建博文</a></li>
             <li><a href="<?php echo base_url(); ?>categories/create">新建类别</a></li>
             <li><a href="<?php echo base_url(); ?>users/logout">登出</a></li>

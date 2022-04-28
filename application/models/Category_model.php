@@ -14,9 +14,10 @@
 
 		// 创建类别
 		public function create_category(){
+            $user = $this->session->userdata('user');
 			$data = array(
 				'name' => $this->input->post('name'),
-				'user_id' => $this->session->userdata('user_id')
+				'user_id' => $user['id']
 			);
 
 			return $this->db->insert('categories', $data);

@@ -8,10 +8,11 @@
 
 		// 创建评论
 		public function create_comment($post_id){
+            $user = $this->session->userdata('user');
 			$data = array(
 				'post_id' => $post_id,
-				'name' => $this->session->userdata('username'),
-				'email' => $this->session->userdata('user_email'),
+				'name' => $user['name'],
+				'email' => $user['email'],
 				'body' => $this->input->post('body')
 			);
 

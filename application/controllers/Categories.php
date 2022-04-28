@@ -11,11 +11,6 @@
 		}
 
 		public function create(){
-			//  检查登录
-			if(!$this->session->userdata('logged_in')){
-				redirect('users/login');
-			}
-			
 			$data['title'] = 'Create Category';
 
 			$this->form_validation->set_rules('name', 'Name', 'required');
@@ -45,10 +40,7 @@
 		}
 
 		public function delete($id){
-			// 检查登录
-			if(!$this->session->userdata('logged_in')){
-				redirect('users/login');
-			}
+			// TODO 鉴权
 
 			$this->category_model->delete_category($id);
 
